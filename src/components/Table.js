@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-function Table(data) {
-  // console.log(data);
+function Table({ data }) {
+  console.log(data);
   return (
-    <span>Hello, App!</span>
+    <main>
+      {
+        Math.random()
+      }
+    </main>
   );
 }
+
+Table.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default Table;
