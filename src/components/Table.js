@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import PlanetContext from '../context/PlanetContext';
 import PropTypes from 'prop-types';
 
-function Table({ data }) {
-  console.log(data);
+function Table() {
+  const { data } = useContext(PlanetContext);
   return (
     <main>
-      {
-        Math.random()
-      }
+      <table>
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>rotation_period</th>
+          </tr>
+        </thead>
+        <tbody>
+          { data.map((planet) => (
+          <tr>
+            <td>{planet.name}</td>
+            <td>{planet.rotation_period}</td>
+    
+          </tr>
+          ))
+          }
+        </tbody>
+      </table> 
     </main>
   );
 }
