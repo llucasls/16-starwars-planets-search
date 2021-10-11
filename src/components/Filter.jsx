@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import PlanetContext from '../context/PlanetContext';
+import PlanetName from './Filter/PlanetName';
+import FilterList from './Filter/FilterList';
 
 function Filter() {
   const { setFilterText } = useContext(PlanetContext);
@@ -7,12 +9,10 @@ function Filter() {
     setFilterText(target.value);
   };
   return (
-    <input
-      id="name-filter"
-      type="text"
-      onChange={ handleChange }
-      data-testid="name-filter"
-    />
+    <>
+      <PlanetName handleChange={ handleChange } />
+      <FilterList />
+    </>
   );
 }
 
