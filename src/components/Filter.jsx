@@ -4,14 +4,23 @@ import PlanetName from './Filter/PlanetName';
 import FilterList from './Filter/FilterList';
 
 function Filter() {
-  const { setFilterText } = useContext(PlanetContext);
+  const { setFilters, filters } = useContext(PlanetContext);
   const handleChange = ({ target }) => {
-    setFilterText(target.value);
+    setFilters({
+      ...filters,
+      filterByName: {
+        name: target.value,
+      },
+    });
+  };
+  const handleClick = () => {
+
   };
   return (
     <>
       <PlanetName handleChange={ handleChange } />
-      <FilterList />
+      <br />
+      <FilterList handleClick={ handleClick } />
     </>
   );
 }
