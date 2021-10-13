@@ -12,6 +12,22 @@ function PlanetProvider({ children }) {
     filterByNumericValues: [],
   });
 
+  const compare = (planet, planetStat, comparison, number) => {
+    switch (comparison) {
+    case 'maior que':
+      return Boolean(planet[planetStat])
+        && (planet[planetStat] > number);
+    case 'menor que':
+      return Boolean(planet[planetStat])
+        && (planet[planetStat] < number);
+    case 'igual a':
+      return Boolean(planet[planetStat])
+        && (planet[planetStat] === number);
+    default:
+      return true;
+    }
+  };
+
   useEffect(() => {
     fetch('https://swapi-trybe.herokuapp.com/api/planets/')
       .then((binData) => binData.json())
@@ -24,7 +40,7 @@ function PlanetProvider({ children }) {
         planet.name.includes(filters.filterByName.name)
       ));
     setFilteredData(filteredPlanets);
-  }, [data, filters]);
+  }, [data, filters.filterByName]);
 
   const contextValue = {
     data,
