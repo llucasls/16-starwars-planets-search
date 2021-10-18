@@ -31,27 +31,31 @@ function PlanetProvider({ children }) {
   useEffect(() => {
     let planetList = data;
     filters.filterByNumericValues.forEach(({
-      comparison, column, value
+      comparison, column, value,
     }) => {
-        if (comparison === 'maior que') {
-          planetList = planetList.filter((planet) => planet[column] > Number(value))
-        }
-        if (comparison === 'menor que') {
-          planetList = planetList.filter((planet) => planet[column] < Number(value))
-        }
-        if (comparison === 'igual a') {
-          planetList = planetList.filter((planet) => planet[column] === (value))
-        }
-        return planetList
-    })
+      if (comparison === 'maior que') {
+        planetList = planetList.filter((planet) => planet[column] > Number(value));
+      }
+      if (comparison === 'menor que') {
+        planetList = planetList.filter((planet) => planet[column] < Number(value));
+      }
+      if (comparison === 'igual a') {
+        planetList = planetList.filter((planet) => planet[column] === (value));
+      }
+      return planetList;
+    });
     setFilteredData(planetList);
   }, [data, filters.filterByNumericValues]);
 
   const contextValue = {
-    data, setData,
-    filteredData, setFilteredData,
-    filters, setFilters,
-    usedColumns, setUsedColumns,
+    data,
+    setData,
+    filteredData,
+    setFilteredData,
+    filters,
+    setFilters,
+    usedColumns,
+    setUsedColumns,
   };
 
   return (

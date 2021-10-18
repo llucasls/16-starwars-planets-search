@@ -3,15 +3,15 @@ import PlanetContext from '../../context/PlanetContext';
 // import PropTypes from 'prop-types';
 
 function FilterList() {
-  const { filteredData, setFilteredData,
-    setFilters, filters } = useContext(PlanetContext);
-  const [ planets, setPlanets ] = useState([]);
-  const [ comparisonFilters, setComparisonFilters ] = useState({});
-  const [ columns, setColumns ] = useState(
+  const {
+    setFilters, filters,
+  } = useContext(PlanetContext);
+  const [comparisonFilters, setComparisonFilters] = useState({});
+  const [columns, setColumns] = useState(
     ['population', 'orbital_period', 'diameter',
-    'rotation_period', 'surface_water']
+      'rotation_period', 'surface_water'],
   );
-  const [ disableButton, setDisableButton ] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
 
   useEffect(() => {
     setComparisonFilters({
@@ -19,7 +19,7 @@ function FilterList() {
       comparison: 'maior que',
       value: '0',
     });
-  }, [])
+  }, []);
 
   const handleChange = ({ target }) => {
     setComparisonFilters({
@@ -29,7 +29,9 @@ function FilterList() {
   };
 
   const handleClick = () => {
-/*     const index = columns.indexOf(comparisonFilters.column);
+    setDisableButton(!disableButton);
+    setColumns(columns);
+    /*     const index = columns.indexOf(comparisonFilters.column);
     // setDisableButton(true);
     setColumns(columns.slice(0, index).concat(columns.slice(index + 1)));
     setComparisonFilters({
@@ -40,15 +42,15 @@ function FilterList() {
       ...filters,
       filterByNumericValues: [
         ...filters.filterByNumericValues,
-        comparisonFilters
+        comparisonFilters,
       ],
     });
   };
-  
+
   const cancelFilter = () => {
     // do nothing
   };
-  
+
   return (
     <>
       Filter:
@@ -62,7 +64,7 @@ function FilterList() {
         {
           columns.map((column, index) => (
             <option
-              key={index}
+              key={ index }
             >
               {column}
             </option>
@@ -94,7 +96,7 @@ function FilterList() {
         onClick={ handleClick }
         disabled={ disableButton }
         data-testid="button-filter"
-        >
+      >
         Filter
       </button>
       <button

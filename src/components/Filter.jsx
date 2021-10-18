@@ -13,7 +13,7 @@ function Filter() {
       },
     });
   };
-/*   const handleClick = () => {
+  /*   const handleClick = () => {
     setFilters({
       ...filters,
       filterByNumericValues: [
