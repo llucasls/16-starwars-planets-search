@@ -13,14 +13,10 @@ function Filter() {
       },
     });
   };
-  const handleClick = () => {
-    const columnFilter = document.getElementById('column-filter').value;
-    const comparisonFilter = document.getElementById('comparison-filter').value;
-    const valueFilter = document.getElementById('value-filter').value;
+/*   const handleClick = () => {
     setFilters({
       ...filters,
       filterByNumericValues: [
-        // ...filters.filterByNumericValues,
         {
           column: columnFilter,
           comparison: comparisonFilter,
@@ -28,16 +24,13 @@ function Filter() {
         },
       ],
     });
-    console.log(columnFilter);
-    console.log(comparisonFilter);
-    console.log(valueFilter);
     console.log(filters);
-  };
+  }; */
   return (
     <>
       <PlanetName handleChange={ handleChange } />
       <br />
-      <FilterList handleClick={ handleClick } />
+      <FilterList />
     </>
   );
 }

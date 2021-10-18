@@ -5,28 +5,14 @@ import PlanetContext from './PlanetContext';
 function PlanetProvider({ children }) {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+
+  const [usedColumns, setUsedColumns] = useState([]);
   const [filters, setFilters] = useState({
     filterByName: {
       name: '',
     },
     filterByNumericValues: [],
   });
-
-  const compare = (planet, planetStat, comparison, number) => {
-    switch (comparison) {
-    case 'maior que':
-      return Boolean(planet[planetStat])
-        && (planet[planetStat] > number);
-    case 'menor que':
-      return Boolean(planet[planetStat])
-        && (planet[planetStat] < number);
-    case 'igual a':
-      return Boolean(planet[planetStat])
-        && (planet[planetStat] === number);
-    default:
-      return true;
-    }
-  };
 
   useEffect(() => {
     fetch('https://swapi-trybe.herokuapp.com/api/planets/')
@@ -43,12 +29,10 @@ function PlanetProvider({ children }) {
   }, [data, filters.filterByName]);
 
   const contextValue = {
-    data,
-    setData,
-    filteredData,
-    setFilteredData,
-    filters,
-    setFilters,
+    data, setData,
+    filteredData, setFilteredData,
+    filters, setFilters,
+    usedColumns, setUsedColumns,
   };
 
   return (
