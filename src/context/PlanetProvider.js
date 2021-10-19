@@ -5,7 +5,7 @@ import PlanetContext from './PlanetContext';
 function PlanetProvider({ children }) {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-
+  const [disableButtonList, setDisableButtonList] = useState([false]);
   const [usedColumns, setUsedColumns] = useState([]);
   const [filters, setFilters] = useState({
     filterByName: {
@@ -56,6 +56,8 @@ function PlanetProvider({ children }) {
     setFilters,
     usedColumns,
     setUsedColumns,
+    disableButtonList,
+    setDisableButtonList,
   };
 
   return (

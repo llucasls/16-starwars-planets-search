@@ -4,7 +4,9 @@ import PlanetName from './Filter/PlanetName';
 import FilterList from './Filter/FilterList';
 
 function Filter() {
-  const { setFilters, filters } = useContext(PlanetContext);
+  const { setFilters, filters,
+    disableButtonList } = useContext(PlanetContext);
+
   const handleChange = ({ target }) => {
     setFilters({
       ...filters,
@@ -30,7 +32,7 @@ function Filter() {
     <>
       <PlanetName handleChange={ handleChange } />
       <br />
-      <FilterList />
+      <FilterList disableButton={ disableButtonList[0] } />
     </>
   );
 }

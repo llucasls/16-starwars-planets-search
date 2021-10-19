@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import PlanetContext from '../../context/PlanetContext';
-// import PropTypes from 'prop-types';
 
-function FilterList() {
+function FilterList(props) {
+  const { disableButton } = props;
   const {
     setFilters, filters,
   } = useContext(PlanetContext);
@@ -11,7 +12,6 @@ function FilterList() {
     ['population', 'orbital_period', 'diameter',
       'rotation_period', 'surface_water'],
   );
-  const [disableButton, setDisableButton] = useState(false);
 
   useEffect(() => {
     setComparisonFilters({
@@ -29,15 +29,13 @@ function FilterList() {
   };
 
   const handleClick = () => {
-    setDisableButton(!disableButton);
     setColumns(columns);
-    /*     const index = columns.indexOf(comparisonFilters.column);
-    // setDisableButton(true);
+    const index = columns.indexOf(comparisonFilters.column);
     setColumns(columns.slice(0, index).concat(columns.slice(index + 1)));
     setComparisonFilters({
       ...comparisonFilters,
       column: columns[0],
-    }); */
+    });
     setFilters({
       ...filters,
       filterByNumericValues: [
@@ -112,8 +110,8 @@ function FilterList() {
   );
 }
 
-/* FilterList.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-}; */
+FilterList.propTypes = {
+  disableButton: PropTypes.bool.isRequired,
+};
 
 export default FilterList;
