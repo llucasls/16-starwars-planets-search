@@ -20,7 +20,7 @@ function PlanetProvider({ children }) {
       .then((jsonData) => setData(jsonData.results));
   }, []);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const filteredPlanets = data
       .filter((planet) => (
         planet.name.includes(filters.filterByName.name)
@@ -45,7 +45,30 @@ function PlanetProvider({ children }) {
       return planetList;
     });
     setFilteredData(planetList);
-  }, [data, filters.filterByNumericValues]);
+  }, [data, filters.filterByNumericValues]); */
+
+  useEffect(() => {
+    const filteredPlanets = data
+      .filter((planet) => (
+        planet.name.includes(filters.filterByName.name)
+      ));
+    let planetList = filteredPlanets;
+    filters.filterByNumericValues.forEach(({
+      comparison, column, value,
+    }) => {
+      if (comparison === 'maior que') {
+        planetList = planetList.filter((planet) => planet[column] > Number(value));
+      }
+      if (comparison === 'menor que') {
+        planetList = planetList.filter((planet) => planet[column] < Number(value));
+      }
+      if (comparison === 'igual a') {
+        planetList = planetList.filter((planet) => planet[column] === (value));
+      }
+      return planetList;
+    });
+    setFilteredData(planetList);
+  }, [data, filters]);
 
   const contextValue = {
     data,
