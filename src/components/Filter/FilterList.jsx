@@ -1,11 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import PlanetContext from '../../context/PlanetContext';
+import { removeUsedColumns } from '../../services';
 
 function FilterList(props) {
   const { disableButton } = props;
   const {
-    setFilters, filters,
+    setFilters, filters, disableButtonList, setDisableButtonList,
   } = useContext(PlanetContext);
   const [comparisonFilters, setComparisonFilters] = useState({});
   const [columns, setColumns] = useState(
@@ -43,14 +44,31 @@ function FilterList(props) {
         comparisonFilters,
       ],
     });
+    setDisableButtonList([true, ...disableButtonList]);
   };
 
   const cancelFilter = () => {
     // do nothing
   };
 
+  const handleSubmit = (event) => {
+    const { target } = event;
+    event.preventDefault();
+    setFilters({
+      ...filters,
+      filterByNumericValues: [
+        ...filters.filterByNumericValues,
+        {
+          column: target.column.value,
+          comparison: target.comparison.value,
+          value: target.value.value,
+        },
+      ],
+    });
+  };
+
   return (
-    <>
+    <form onSubmit={ handleSubmit }>
       Filter:
       <select
         id="column-filter"
@@ -60,7 +78,7 @@ function FilterList(props) {
         onChange={ handleChange }
       >
         {
-          columns.map((column, index) => (
+          removeUsedColumns(columns, filters).map((column, index) => (
             <option
               key={ index }
             >
@@ -89,9 +107,9 @@ function FilterList(props) {
         onChange={ handleChange }
       />
       <button
-        type="button"
+        type="submit"
         id="button-filter"
-        onClick={ handleClick }
+        // onClick={ handleClick }
         disabled={ disableButton }
         data-testid="button-filter"
       >
@@ -106,7 +124,7 @@ function FilterList(props) {
       >
         X
       </button>
-    </>
+    </form>
   );
 }
 

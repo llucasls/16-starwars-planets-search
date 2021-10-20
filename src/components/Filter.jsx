@@ -15,19 +15,7 @@ function Filter() {
       },
     });
   };
-  /*   const handleClick = () => {
-    setFilters({
-      ...filters,
-      filterByNumericValues: [
-        {
-          column: columnFilter,
-          comparison: comparisonFilter,
-          value: valueFilter,
-        },
-      ],
-    });
-    console.log(filters);
-  }; */
+
   return (
     <>
       <PlanetName handleChange={ handleChange } />

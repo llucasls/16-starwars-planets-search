@@ -20,7 +20,7 @@ function PlanetProvider({ children }) {
       .then((jsonData) => setData(jsonData.results));
   }, []);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const filteredPlanets = data
       .filter((planet) => (
         planet.name.includes(filters.filterByName.name)
@@ -41,7 +41,7 @@ function PlanetProvider({ children }) {
       return planetList;
     });
     setFilteredData(planetList);
-  }, [data, filters]);
+  }, [data, filters]); */
 
   const contextValue = {
     data,
