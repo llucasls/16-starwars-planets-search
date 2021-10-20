@@ -4,6 +4,7 @@ import { filterPlanets } from '../services';
 
 function Table() {
   const { filteredData, data, filters } = useContext(PlanetContext);
+  console.log(filteredData);
   return (
     <main>
       <table>

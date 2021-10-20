@@ -19,11 +19,11 @@ const removeUsedColumns = (columns, filters) => {
         console.log(remainingColumns);
       }
       // console.log(column);
-    })
+    });
   return columns;
 };
 
-  /*   useEffect(() => {
+/*   useEffect(() => {
     const filteredPlanets = data
       .filter((planet) => (
         planet.name.includes(filters.filterByName.name)

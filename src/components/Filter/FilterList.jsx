@@ -109,7 +109,7 @@ function FilterList(props) {
       <button
         type="submit"
         id="button-filter"
-        // onClick={ handleClick }
+        onClick={ handleClick }
         disabled={ disableButton }
         data-testid="button-filter"
       >
