@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PlanetContext from '../context/PlanetContext';
 import PlanetName from './Filter/PlanetName';
 import FilterList from './Filter/FilterList';
+import PlanetSort from './Filter/PlanetSort';
 
 function Filter() {
   const { setFilters, filters,
@@ -21,6 +22,7 @@ function Filter() {
       <PlanetName handleChange={ handleChange } />
       <br />
       <FilterList disableButton={ disableButtonList[0] } />
+      <PlanetSort />
     </>
   );
 }

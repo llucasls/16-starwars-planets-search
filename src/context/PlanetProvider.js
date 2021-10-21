@@ -12,6 +12,10 @@ function PlanetProvider({ children }) {
       name: '',
     },
     filterByNumericValues: [],
+    order: {
+      column: 'name',
+      sort: 'ASC',
+    },
   });
 
   useEffect(() => {
@@ -20,10 +24,10 @@ function PlanetProvider({ children }) {
       .then((jsonData) => setData(jsonData.results));
   }, []);
 
-  /*   useEffect(() => {
+  useEffect(() => {
     const filteredPlanets = data
       .filter((planet) => (
-        planet.name.includes(filters.filterByName.name)
+        planet.name.toLowerCase().includes(filters.filterByName.name.toLowerCase())
       ));
     let planetList = filteredPlanets;
     filters.filterByNumericValues.forEach(({
@@ -41,7 +45,7 @@ function PlanetProvider({ children }) {
       return planetList;
     });
     setFilteredData(planetList);
-  }, [data, filters]); */
+  }, [data, filters]);
 
   const contextValue = {
     data,

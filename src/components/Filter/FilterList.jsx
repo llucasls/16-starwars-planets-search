@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import PlanetContext from '../../context/PlanetContext';
-import { removeUsedColumns } from '../../services';
+import removeUsedColumns from '../../services';
 
 function FilterList(props) {
   const { disableButton } = props;
   const {
-    setFilters, filters, disableButtonList, setDisableButtonList,
+    setFilters, filters,
   } = useContext(PlanetContext);
   const [comparisonFilters, setComparisonFilters] = useState({});
   const [columns, setColumns] = useState(
@@ -29,24 +29,6 @@ function FilterList(props) {
     });
   };
 
-  const handleClick = () => {
-    setColumns(columns);
-    const index = columns.indexOf(comparisonFilters.column);
-    setColumns(columns.slice(0, index).concat(columns.slice(index + 1)));
-    setComparisonFilters({
-      ...comparisonFilters,
-      column: columns[0],
-    });
-    setFilters({
-      ...filters,
-      filterByNumericValues: [
-        ...filters.filterByNumericValues,
-        comparisonFilters,
-      ],
-    });
-    setDisableButtonList([true, ...disableButtonList]);
-  };
-
   const cancelFilter = () => {
     // do nothing
   };
@@ -54,15 +36,18 @@ function FilterList(props) {
   const handleSubmit = (event) => {
     const { target } = event;
     event.preventDefault();
+    const columnList = columns.filter((column) => column !== comparisonFilters.column);
+    setColumns(columnList);
+    setComparisonFilters({
+      ...comparisonFilters,
+      column: columns[0],
+    });
+    console.log(target.comparison);
     setFilters({
       ...filters,
       filterByNumericValues: [
         ...filters.filterByNumericValues,
-        {
-          column: target.column.value,
-          comparison: target.comparison.value,
-          value: target.value.value,
-        },
+        comparisonFilters,
       ],
     });
   };
@@ -109,7 +94,6 @@ function FilterList(props) {
       <button
         type="submit"
         id="button-filter"
-        onClick={ handleClick }
         disabled={ disableButton }
         data-testid="button-filter"
       >
