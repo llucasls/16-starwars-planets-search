@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import PlanetContext from '../../context/PlanetContext';
-import removeUsedColumns from '../../services';
+import { removeUsedColumns } from '../../services';
 
 function FilterList(props) {
   const { disableButton } = props;
