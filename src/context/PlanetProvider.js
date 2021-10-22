@@ -17,6 +17,7 @@ function PlanetProvider({ children }) {
       sort: 'ASC',
     },
   });
+  const ONE = 1;
 
   useEffect(() => {
     fetch('https://swapi-trybe.herokuapp.com/api/planets/')
@@ -44,6 +45,20 @@ function PlanetProvider({ children }) {
       }
       return planetList;
     });
+    if (filters.order.sort === 'ASC') {
+      planetList
+        .sort((prev, next) => (
+          (prev[filters.order.column]) < (next[filters.order.column])
+            ? -(ONE) : ONE
+        ));
+    }
+    if (filters.order.sort === 'DESC') {
+      planetList
+        .sort((prev, next) => (
+          (prev[filters.order.column]) < (next[filters.order.column])
+            ? ONE : -(ONE)
+        ));
+    }
     setFilteredData(planetList);
   }, [data, filters]);
 

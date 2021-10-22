@@ -9,12 +9,12 @@ function PlanetSort() {
     'surface_water', 'population',
   ];
 
-  const handleChange = () => {
+  const handleChange = ({ target }) => {
     setFilters({
       ...filters,
       order: {
-        // column,
-        // sort,
+        ...filters.order,
+        [target.name]: target.value,
       },
     });
   };
@@ -22,7 +22,10 @@ function PlanetSort() {
   return (
     <form onChange={ handleChange }>
       Order:
-      <select data-testid="column-sort">
+      <select
+        name="column"
+        data-testid="column-sort"
+      >
         { columnList.map((column, index) => (
           <option key={ index }>{column}</option>
         )) }
