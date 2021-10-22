@@ -22,6 +22,15 @@ const removeUsedColumns = (columns, filters) => {
   return columns;
 };
 
+const order = (prev, next) => {
+  const ONE = 1;
+  if (Number(prev) && Number(next)) {
+    return (prev - next);
+  }
+  return (
+    prev < next ? -(ONE) : (ONE)
+  );
+};
 /*   useEffect(() => {
     const filteredPlanets = data
       .filter((planet) => (
@@ -45,4 +54,4 @@ const removeUsedColumns = (columns, filters) => {
     setFilteredData(planetList);
   }, [data, filters]); */
 
-export default removeUsedColumns;
+export { removeUsedColumns, order };
