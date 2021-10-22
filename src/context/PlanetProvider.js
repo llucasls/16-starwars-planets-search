@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import PlanetContext from './PlanetContext';
+import { order } from '../services';
 
 function PlanetProvider({ children }) {
   const [data, setData] = useState([]);
@@ -17,7 +18,6 @@ function PlanetProvider({ children }) {
       sort: 'ASC',
     },
   });
-  const ONE = 1;
 
   useEffect(() => {
     fetch('https://swapi-trybe.herokuapp.com/api/planets/')
@@ -48,15 +48,13 @@ function PlanetProvider({ children }) {
     if (filters.order.sort === 'ASC') {
       planetList
         .sort((prev, next) => (
-          (prev[filters.order.column]) < (next[filters.order.column])
-            ? -(ONE) : ONE
+          order(prev[filters.order.column], next[filters.order.column])
         ));
     }
     if (filters.order.sort === 'DESC') {
       planetList
         .sort((prev, next) => (
-          (prev[filters.order.column]) < (next[filters.order.column])
-            ? ONE : -(ONE)
+          order(next[filters.order.column], prev[filters.order.column])
         ));
     }
     setFilteredData(planetList);

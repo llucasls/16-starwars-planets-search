@@ -34,6 +34,7 @@ function PlanetSort() {
         ASC
         <input
           name="sort"
+          data-testid="column-sort-input-asc"
           id="sort-ascending"
           type="radio"
           value="ASC"
@@ -43,11 +44,18 @@ function PlanetSort() {
         DESC
         <input
           name="sort"
+          data-testid="column-sort-input-desc"
           id="sort-descending"
           type="radio"
           value="DESC"
         />
       </label>
+      <button
+        type="button"
+        data-testid="column-sort-button"
+      >
+        Ordenar
+      </button>
     </form>
   );
 }
