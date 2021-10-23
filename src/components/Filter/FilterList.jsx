@@ -103,7 +103,10 @@ function FilterList() {
       </button>
       {
         usedFilters.map((useF, index) => (
-          <div key={ index }>
+          <div
+            key={ index }
+            data-testid="filter"
+          >
             <span>
               {`${useF.column} ${useF.comparison} ${useF.value}`}
             </span>
@@ -112,7 +115,6 @@ function FilterList() {
               id="filter"
               name={ index }
               onClick={ cancelFilter }
-              data-testid="filter"
             >
               X
             </button>
