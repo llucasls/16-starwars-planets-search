@@ -4,7 +4,7 @@ import { removeUsedColumns } from '../../services';
 
 function FilterList() {
   const {
-    setFilters, filters,
+    setFilters, filters, usedFilters,
   } = useContext(PlanetContext);
   const [comparisonFilters, setComparisonFilters] = useState({});
   const [columns, setColumns] = useState(
@@ -27,8 +27,16 @@ function FilterList() {
     });
   };
 
-  const cancelFilter = () => {
-    // do nothing
+  const cancelFilter = ({ target }) => {
+    const index = target.name;
+    const filterList = filters.filterByNumericValues
+      .filter((usedFilter) => (
+        usedFilter.column !== filters.filterByNumericValues[index].column
+      ));
+    setFilters({
+      ...filters,
+      filterByNumericValues: filterList,
+    });
   };
 
   const handleSubmit = (event) => {
@@ -93,14 +101,24 @@ function FilterList() {
       >
         Filter
       </button>
-      <button
-        type="button"
-        id="filter"
-        onClick={ cancelFilter }
-        data-testid="filter"
-      >
-        X
-      </button>
+      {
+        usedFilters.map((useF, index) => (
+          <div key={ index }>
+            <span>
+              {`${useF.column} ${useF.comparison} ${useF.value}`}
+            </span>
+            <button
+              type="button"
+              id="filter"
+              name={ index }
+              onClick={ cancelFilter }
+              data-testid="filter"
+            >
+              X
+            </button>
+          </div>
+        ))
+      }
     </form>
   );
 }

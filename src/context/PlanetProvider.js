@@ -61,7 +61,7 @@ function PlanetProvider({ children }) {
   }, [data, filters]);
 
   useEffect(() => {
-
+    setUsedFilters(filters.filterByNumericValues);
   }, [filters.filterByNumericValues]);
 
   const contextValue = {
