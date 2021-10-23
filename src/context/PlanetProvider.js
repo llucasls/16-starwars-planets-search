@@ -6,8 +6,8 @@ import { order } from '../services';
 function PlanetProvider({ children }) {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [disableButtonList, setDisableButtonList] = useState([false]);
   const [usedColumns, setUsedColumns] = useState([]);
+  const [usedFilters, setUsedFilters] = useState([]);
   const [filters, setFilters] = useState({
     filterByName: {
       name: '',
@@ -60,6 +60,10 @@ function PlanetProvider({ children }) {
     setFilteredData(planetList);
   }, [data, filters]);
 
+  useEffect(() => {
+
+  }, [filters.filterByNumericValues]);
+
   const contextValue = {
     data,
     setData,
@@ -69,8 +73,8 @@ function PlanetProvider({ children }) {
     setFilters,
     usedColumns,
     setUsedColumns,
-    disableButtonList,
-    setDisableButtonList,
+    usedFilters,
+    setUsedFilters,
   };
 
   return (

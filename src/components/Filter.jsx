@@ -5,8 +5,7 @@ import FilterList from './Filter/FilterList';
 import PlanetSort from './Filter/PlanetSort';
 
 function Filter() {
-  const { setFilters, filters,
-    disableButtonList } = useContext(PlanetContext);
+  const { setFilters, filters } = useContext(PlanetContext);
 
   const handleChange = ({ target }) => {
     setFilters({
@@ -21,7 +20,7 @@ function Filter() {
     <>
       <PlanetName handleChange={ handleChange } />
       <br />
-      <FilterList disableButton={ disableButtonList[0] } />
+      <FilterList />
       <PlanetSort />
     </>
   );

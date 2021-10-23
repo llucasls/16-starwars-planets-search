@@ -1,10 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import PlanetContext from '../../context/PlanetContext';
 import { removeUsedColumns } from '../../services';
 
-function FilterList(props) {
-  const { disableButton } = props;
+function FilterList() {
   const {
     setFilters, filters,
   } = useContext(PlanetContext);
@@ -59,7 +57,6 @@ function FilterList(props) {
         id="column-filter"
         name="column"
         data-testid="column-filter"
-        disabled={ disableButton }
         onChange={ handleChange }
       >
         {
@@ -76,7 +73,6 @@ function FilterList(props) {
         id="comparison-filter"
         name="comparison"
         data-testid="comparison-filter"
-        disabled={ disableButton }
         onChange={ handleChange }
       >
         <option>maior que</option>
@@ -88,13 +84,11 @@ function FilterList(props) {
         id="value-filter"
         name="value"
         data-testid="value-filter"
-        disabled={ disableButton }
         onChange={ handleChange }
       />
       <button
         type="submit"
         id="button-filter"
-        disabled={ disableButton }
         data-testid="button-filter"
       >
         Filter
@@ -103,7 +97,6 @@ function FilterList(props) {
         type="button"
         id="filter"
         onClick={ cancelFilter }
-        disabled={ !disableButton }
         data-testid="filter"
       >
         X
@@ -111,9 +104,5 @@ function FilterList(props) {
     </form>
   );
 }
-
-FilterList.propTypes = {
-  disableButton: PropTypes.bool.isRequired,
-};
 
 export default FilterList;
