@@ -40,7 +40,6 @@ function FilterList() {
   };
 
   const handleSubmit = (event) => {
-    const { target } = event;
     event.preventDefault();
     const columnList = columns.filter((column) => column !== comparisonFilters.column);
     setColumns(columnList);
@@ -48,7 +47,6 @@ function FilterList() {
       ...comparisonFilters,
       column: columns[0],
     });
-    console.log(target.comparison);
     setFilters({
       ...filters,
       filterByNumericValues: [
