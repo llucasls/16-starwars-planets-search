@@ -50,12 +50,6 @@ function PlanetSort() {
           value="DESC"
         />
       </label>
-      <button
-        type="button"
-        data-testid="column-sort-button"
-      >
-        Ordenar
-      </button>
     </form>
   );
 }
