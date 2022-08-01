@@ -20,16 +20,16 @@ The complete list of technologies used:
 In order to run this project, you're going to need git, node and npm installed
 locally.
 First of all, clone the project, and cd into the new directory:
-```{sh}
+```sh
 git clone https://github.com/Lucas-L-S-Haine/16-starwars-planets-search.git
 cd 16-starwars-planets-search
 ```
 Then install the dependencies:
-```{sh}
+```sh
 npm install
 ```
 Finally, run the application:
-```{sh}
+```sh
 npm start
 ```
 Now you can access the application from your browser by following the url
