@@ -21,8 +21,8 @@ In order to run this project, you're going to need git, node and npm installed
 locally.
 First of all, clone the project, and cd into the new directory:
 ```sh
-git clone https://github.com/Lucas-L-S-Haine/16-starwars-planets-search.git
-cd 16-starwars-planets-search
+git clone https://github.com/Lucas-L-S-Haine/16-starwars-planets-search.git starwars-planets-search
+cd starwars-planets-search
 ```
 Then install the dependencies:
 ```sh
